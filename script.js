@@ -81,3 +81,24 @@ async function checkLogin() {
 window.onload = () => {
   checkLogin();
 };
+
+document.getElementById("open-login").addEventListener("click", () => {
+  document.getElementById("login-modal").style.display = "block";
+});
+
+document.getElementById("close-modal").addEventListener("click", () => {
+  document.getElementById("login-modal").style.display = "none";
+});
+
+// Close modal on outside click
+window.onclick = function (event) {
+  const modal = document.getElementById("login-modal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
+// Discord login
+document.getElementById("discord-login").addEventListener("click", () => {
+  window.location.href = "https://gamba-backend.onrender.com/auth/discord";
+});
