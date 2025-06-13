@@ -49,6 +49,7 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  z-index: 10;
 }
 
 .login-btn:hover {
@@ -60,8 +61,50 @@ body {
   height: 20px;
 }
 
-.hidden {
+/* Popup overlay */
+.popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup.hidden {
   display: none;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+}
+
+/* Popup box */
+.popup-box {
+  position: relative;
+  background: #1c1c1c;
+  border-radius: 16px;
+  padding: 30px 25px 20px;
+  width: 360px;
+  box-shadow: 0 0 20px #a855f7;
+  z-index: 999;
+  animation: glow-box 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow-box {
+  0% {
+    box-shadow: 0 0 10px #a855f7;
+  }
+  100% {
+    box-shadow: 0 0 20px #facc15;
+  }
 }
 
 /* Tab header */
@@ -81,7 +124,7 @@ body {
 .tab-buttons {
   display: flex;
   justify-content: space-between;
-  gap: 10px; /* Adds spacing between Login/Register/Forgot buttons */
+  gap: 10px; /* spacing between Login/Register/Forgot buttons */
   margin-top: 25px;
 }
 
@@ -118,7 +161,7 @@ body {
 form {
   display: flex;
   flex-direction: column;
-  gap: 14px; /* Increased gap between input fields and submit button */
+  gap: 14px; /* increased gap between input fields and submit button */
   margin-top: 10px;
 }
 
@@ -208,51 +251,4 @@ form button[type="submit"] {
   padding: 0 10px;
   font-size: 0.9rem;
   color: #888;
-}
-
-/* Hide popup by default */
-.popup.hidden {
-  display: none;
-}
-
-#auth-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.7);
-  z-index: 999;
-}
-
-.popup-box {
-  position: relative;
-  background: #1c1c1c;
-  border-radius: 16px;
-  padding: 30px 25px 20px;
-  width: 360px;
-  box-shadow: 0 0 20px #a855f7;
-  z-index: 999;
-}
-
-.popup-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.7);
-  z-index: 998;
 }
