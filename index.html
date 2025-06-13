@@ -9,10 +9,7 @@
 <body>
   <header class="header">
     <h1 class="logo-text">WƎNDER</h1>
-    <button id="login-btn" class="login-btn">
-      <img src="discord.png" alt="Discord Logo" class="discord-icon" />
-      Login with Discord
-    </button>
+    <button id="open-login" class="login-btn">Login</button>
   </header>
 
   <main class="main-content">
@@ -21,17 +18,24 @@
     <p>Place your bets, play games, and win big!</p>
   </main>
 
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="contacts">
-        <h3>Contact Us</h3>
-        <p>Email: support@wender.com</p>
-        <p>Discord: Wender#1234</p>
+<!-- Login Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close">&times;</span>
+      <h2>Welcome</h2>
+      <div class="modal-buttons">
+        <button class="modal-btn">Login</button>
+        <button class="modal-btn">Register</button>
+        <button class="modal-btn">Forgot Password</button>
       </div>
-      <div class="copyright">
-        &copy; 2025 WƎNDER Gambling. All rights reserved.
-      </div>
+      <hr />
+      <button id="discord-login" class="discord-btn">
+        <img src="discord.png" alt="Discord Logo" class="discord-icon" />
+        Login with Discord
+      </button>
     </div>
-  </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
