@@ -216,15 +216,6 @@ form button[type="submit"] {
 }
 
 #auth-popup {
-  /* REMOVE these: */
-  /* background: #1c1c1c; */
-  /* border-radius: 16px; */
-  /* padding: 30px 25px 20px; */
-  /* width: 360px; */
-  /* animation: glow-box 3s ease-in-out infinite alternate; */
-  /* box-shadow: 0 0 20px #a855f7; */
-
-  /* KEEP these for positioning and z-index: */
   position: fixed;
   top: 0;
   left: 0;
@@ -239,23 +230,29 @@ form button[type="submit"] {
 
 .popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(0,0,0,0.7);
+  z-index: 999;
 }
 
 .popup-box {
+  position: relative;
   background: #1c1c1c;
   border-radius: 16px;
   padding: 30px 25px 20px;
   width: 360px;
   box-shadow: 0 0 20px #a855f7;
-  animation: glow-box 3s ease-in-out infinite alternate;
-  position: relative;
+  z-index: 999;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.7);
+  z-index: 998;
 }
