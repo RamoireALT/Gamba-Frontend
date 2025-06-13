@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WƎNDER Gambling</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -15,57 +15,15 @@
     </button>
   </header>
 
-  <!-- Login Popup -->
-  <div id="popup" class="popup hidden">
-    <div class="popup-content">
-      <!-- Login Form -->
-      <form id="login-form" class="form">
-        <h2>Login</h2>
-        <input type="text" placeholder="Username or Email" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-        <div class="form-footer">
-          <a href="#" onclick="showForm('register')">Register</a> |
-          <a href="#" onclick="showForm('reset')">Forgot Password?</a>
-        </div>
-        <div class="divider">or</div>
-        <button id="discord-login" class="discord-login">
-          <img src="discord.png" alt="Discord Logo" class="discord-icon" />
-          Login with Discord
-        </button>
-      </form>
+  <main>
+    <p style="text-align: center; margin-top: 2rem; font-size: 1.2rem; color: #bbb;">
+      Welcome to WƎNDER. Choose a game to play!
+    </p>
+  </main>
 
-      <!-- Register Form -->
-      <form id="register-form" class="form hidden">
-        <h2>Register</h2>
-        <input type="text" placeholder="Username" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <input type="password" placeholder="Confirm Password" required />
-        <button type="submit">Register</button>
-        <div class="form-footer">
-          <a href="#" onclick="showForm('login')">Back to Login</a>
-        </div>
-      </form>
-
-      <!-- Reset Password Form -->
-      <form id="reset-form" class="form hidden">
-        <h2>Reset Password</h2>
-        <input type="password" placeholder="Current Password" required />
-        <input type="password" placeholder="New Password" required />
-        <input type="password" placeholder="Confirm New Password" required />
-        <button type="submit">Reset Password</button>
-        <div class="form-footer">
-          <a href="#" onclick="showForm('login')">Back to Login</a>
-        </div>
-      </form>
-    </div>
-  </div>
-  
   <footer class="footer">
-    <p>&copy; 2025 WƎNDER. All rights reserved. Contact: support@wender.gg</p>
+    <p>Contact us: support@wender.com | &copy; 2025 WƎNDER. All rights reserved.</p>
   </footer>
-</body>
 
   <script src="script.js"></script>
 </body>
