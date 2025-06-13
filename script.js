@@ -1,33 +1,83 @@
-const loginBtn = document.getElementById("loginBtn");
+const profileContainer = document.getElementById('profile-container');
 
-// Try to fetch user info
-async function getUser() {
+function createLoginButton() {
+  const btn = document.createElement('button');
+  btn.id = 'login-btn';
+  btn.innerHTML = `<img src="discord.png" alt="Discord logo" /> Login with Discord`;
+  btn.onclick = () => {
+    window.location.href = 'https://gamba-backend.onrender.com/auth/discord';
+  };
+  profileContainer.innerHTML = '';
+  profileContainer.appendChild(btn);
+}
+
+function createProfileButton(user) {
+  // user = { username, avatar, id }
+  profileContainer.innerHTML = '';
+
+  const btn = document.createElement('button');
+  btn.id = 'profile-btn';
+  const avatarUrl = user.avatar
+    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
+    : 'default-avatar.png'; // fallback avatar if needed
+
+  btn.innerHTML = `<img src="${avatarUrl}" alt="Avatar" /> ${user.username}`;
+
+  const dropdown = document.createElement('div');
+  dropdown.id = 'profile-dropdown';
+
+  const profileOption = document.createElement('button');
+  profileOption.textContent = 'Profile';
+  profileOption.onclick = () => {
+    alert('Profile page not implemented yet!');
+  };
+
+  const logoutOption = document.createElement('button');
+  logoutOption.textContent = 'Logout';
+  logoutOption.onclick = async () => {
+    await fetch('https://gamba-backend.onrender.com/auth/logout', {
+      method: 'POST',
+      credentials: 'include',
+    });
+    window.location.reload();
+  };
+
+  dropdown.appendChild(profileOption);
+  dropdown.appendChild(logoutOption);
+
+  profileContainer.appendChild(btn);
+  profileContainer.appendChild(dropdown);
+
+  // Toggle dropdown
+  btn.addEventListener('click', () => {
+    dropdown.classList.toggle('show');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!profileContainer.contains(e.target)) {
+      dropdown.classList.remove('show');
+    }
+  });
+}
+
+async function checkLogin() {
   try {
-    const res = await fetch('https://gamba-backend.onrender.com/me', {
-      credentials: 'include'
+    const res = await fetch('https://gamba-backend.onrender.com/api/user', {
+      credentials: 'include',
     });
     if (res.ok) {
       const user = await res.json();
-      updateProfile(user);
+      createProfileButton(user);
     } else {
-      console.log("Not logged in.");
+      createLoginButton();
     }
   } catch (err) {
-    console.error("Login fetch error:", err);
+    console.error('Error checking login:', err);
+    createLoginButton();
   }
 }
 
-// Show user info in button
-function updateProfile(user) {
-  loginBtn.innerHTML = `
-    <img src="${user.avatar}" class="discord-icon" />
-    <span>${user.username}</span>
-  `;
-}
-
-// Go to backend login
-loginBtn.addEventListener("click", () => {
-  window.location.href = "https://gamba-backend.onrender.com/auth/discord";
-});
-
-getUser();
+window.onload = () => {
+  checkLogin();
+};
