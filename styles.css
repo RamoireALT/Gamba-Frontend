@@ -5,8 +5,6 @@ html, body {
   background: #0f0f0f;
   color: #eee;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  flex-direction: column;
 }
 
 .header {
@@ -145,4 +143,9 @@ main {
   padding: 20px 0;
   font-size: 0.9rem;
   border-top: 1px solid #333;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
