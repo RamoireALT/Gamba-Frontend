@@ -1,18 +1,10 @@
-/* Reset & base */
-* {
-  box-sizing: border-box;
-}
 body {
   margin: 0;
   background: #0f0f0f;
   color: #eee;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Header */
 .header {
   display: flex;
   justify-content: space-between;
@@ -20,7 +12,6 @@ body {
   padding: 15px 30px;
   background: #1c1c1c;
   border-bottom: 1px solid #333;
-  flex-shrink: 0;
 }
 
 .logo-text {
@@ -41,118 +32,108 @@ body {
 }
 
 .login-btn {
-  background-color: #5865f2;
-  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 16px;
+  background-color: #5865f2;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
+  color: white;
   font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .login-btn:hover {
   background-color: #4752c4;
 }
 
-/* Main content */
-.main-content {
-  flex: 1;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-/* Footer */
-.footer {
-  background: #1c1c1c;
-  padding: 15px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #aaa;
-  flex-shrink: 0;
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: #1e1e1e;
-  padding: 30px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #aaa;
-}
-
-.close:hover {
-  color: #fff;
-}
-
-.modal-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.modal-btn {
-  padding: 10px;
-  background: #2d2d2d;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.modal-btn:hover {
-  background: #444;
-}
-
-.divider {
-  border: 0;
-  height: 1px;
-  background: #444;
-  margin: 15px 0;
-}
-
-.discord-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #5865f2;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.discord-btn:hover {
-  background: #4752c4;
-}
-
 .discord-icon {
   width: 20px;
   height: 20px;
+}
+
+.footer {
+  background: #1c1c1c;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 0.9rem;
+  border-top: 1px solid #333;
+  margin-top: 50px;
+}
+
+/* Login Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 30px;
+  width: 320px;
+  animation: glow 3s ease-in-out infinite alternate;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+}
+
+.popup-tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.popup-tabs button {
+  background: transparent;
+  border: none;
+  color: #eee;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.popup-tabs button:hover {
+  color: #facc15;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form input,
+.form button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+}
+
+.form input {
+  background: #2c2c2c;
+  color: white;
+}
+
+.form button {
+  background: #5865f2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #4752c4;
+}
+
+.hidden {
+  display: none;
 }
