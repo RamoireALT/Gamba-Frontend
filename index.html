@@ -9,35 +9,55 @@
 <body>
   <header class="header">
     <h1 class="logo-text">WƎNDER</h1>
-    <button id="open-login" class="login-btn">Login</button>
+    <button id="login-btn" class="login-btn">
+      <img src="discord.png" alt="Discord Logo" class="discord-icon" />
+      Login
+    </button>
   </header>
 
-  <main class="main-content">
-    <h2>Welcome to WƎNDER Gambling</h2>
-    <p>Place your bets, play games, and enjoy!</p>
+  <main>
+    <div id="popup" class="popup hidden">
+      <div class="popup-content">
+        <div class="popup-tabs">
+          <button onclick="showForm('login')">Login</button>
+          <button onclick="showForm('register')">Register</button>
+          <button onclick="showForm('reset')">Forgot Password</button>
+        </div>
+
+        <!-- Login -->
+        <form id="login-form" class="form">
+          <h2>Login</h2>
+          <input type="text" placeholder="Username or Email" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+
+        <!-- Register -->
+        <form id="register-form" class="form hidden">
+          <h2>Register</h2>
+          <input type="text" placeholder="Username" required />
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Password" required />
+          <input type="password" placeholder="Confirm Password" required />
+          <button type="submit">Register</button>
+        </form>
+
+        <!-- Reset Password -->
+        <form id="reset-form" class="form hidden">
+          <h2>Reset Password</h2>
+          <input type="password" placeholder="Current Password" required />
+          <input type="password" placeholder="New Password" required />
+          <input type="password" placeholder="Confirm New Password" required />
+          <button type="submit">Reset</button>
+        </form>
+      </div>
+    </div>
   </main>
 
   <footer class="footer">
-    <p>&copy; 2025 WƎNDER Gambling | Contact: support@wendercasino.com</p>
+    <p>© 2025 WƎNDER Gambling. All rights reserved.</p>
+    <p>Contact: support@wender.gg</p>
   </footer>
-
-  <!-- Modal -->
-  <div id="login-modal" class="modal">
-    <div class="modal-content">
-      <span id="close-modal" class="close">&times;</span>
-      <h2>Welcome</h2>
-      <div class="modal-buttons">
-        <button class="modal-btn">Login</button>
-        <button class="modal-btn">Register</button>
-        <button class="modal-btn">Forgot Password</button>
-      </div>
-      <hr class="divider"/>
-      <button id="discord-login" class="discord-btn">
-        <img src="discord.png" alt="Discord Logo" class="discord-icon" />
-        Login with Discord
-      </button>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
