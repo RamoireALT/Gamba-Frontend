@@ -129,3 +129,15 @@ button[type="submit"]:hover, .discord-login:hover {
   font-size: 0.9rem;
   margin: -10px 0 10px;
 }
+
+.footer {
+  background-color: #1c1c1c;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  border-top: 1px solid #333;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+}
