@@ -1,25 +1,33 @@
-const loginBtn = document.getElementById('loginBtn');
-const profileDiv = document.getElementById('profile');
+const loginBtn = document.getElementById("loginBtn");
 
-loginBtn.addEventListener('click', () => {
-  window.location.href = 'https://gamba-backend.onrender.com/auth/discord';
-});
-
-async function fetchUser() {
+// Try to fetch user info
+async function getUser() {
   try {
     const res = await fetch('https://gamba-backend.onrender.com/me', {
       credentials: 'include'
     });
-    if (!res.ok) throw new Error('Not logged in');
-    const user = await res.json();
-
-    profileDiv.innerHTML = `
-      <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" alt="Profile" style="height: 32px; border-radius: 50%; vertical-align: middle;">
-      <span style="margin-left: 0.5rem;">${user.username}</span>
-    `;
+    if (res.ok) {
+      const user = await res.json();
+      updateProfile(user);
+    } else {
+      console.log("Not logged in.");
+    }
   } catch (err) {
-    console.log("User not logged in");
+    console.error("Login fetch error:", err);
   }
 }
 
-fetchUser();
+// Show user info in button
+function updateProfile(user) {
+  loginBtn.innerHTML = `
+    <img src="${user.avatar}" class="discord-icon" />
+    <span>${user.username}</span>
+  `;
+}
+
+// Go to backend login
+loginBtn.addEventListener("click", () => {
+  window.location.href = "https://gamba-backend.onrender.com/auth/discord";
+});
+
+getUser();
