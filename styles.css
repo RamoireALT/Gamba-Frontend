@@ -27,6 +27,7 @@ header {
 .logo {
   font-size: 2.5rem;
   font-weight: 900;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(270deg, #9b59b6, #f1c40f, #9b59b6);
   background-size: 400% 400%;
