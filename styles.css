@@ -1,99 +1,58 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+  background: #111;
+  color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Header */
 header {
-  background-color: #1e1e1e;
+  background: #1c1c1c;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-.logo {
-  font-size: 2.5rem;
-  font-weight: 900;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(270deg, #9b59b6, #f1c40f, #9b59b6);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: glowShift 6s ease infinite;
-  text-align: left;
+#logo {
+  font-size: 2rem;
+  font-weight: bold;
+  animation: glow 5s infinite alternate;
 }
 
-/* Login Button */
-#login-btn {
+@keyframes glow {
+  0% { text-shadow: 0 0 10px purple; color: purple; }
+  100% { text-shadow: 0 0 10px gold; color: gold; }
+}
+
+#profile button {
+  background: #5865F2;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #5865F2;
-  padding: 0.5rem 1rem;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
+  cursor: pointer;
   font-weight: bold;
-  transition: background 0.2s;
 }
 
-#login-btn:hover {
-  background-color: #4752c4;
+#profile img {
+  height: 20px;
 }
 
-.discord-icon {
-  width: 24px;
-  height: 24px;
-}
-
-/* Main Content */
 main {
   flex: 1;
-  padding: 4rem 2rem;
   text-align: center;
+  padding: 2rem;
 }
 
-main h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-main p {
-  font-size: 1.2rem;
-  color: #cccccc;
-}
-
-/* Footer */
 footer {
-  background-color: #1e1e1e;
-  color: #aaaaaa;
-  text-align: center;
+  background: #1c1c1c;
   padding: 1rem;
-  font-size: 0.9rem;
-}
-
-@keyframes glowShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  text-align: center;
+  color: #ccc;
 }
