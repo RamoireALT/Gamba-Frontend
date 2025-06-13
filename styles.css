@@ -1,8 +1,12 @@
-body {
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
   background: #0f0f0f;
   color: #eee;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -130,6 +134,10 @@ button[type="submit"]:hover, .discord-login:hover {
   margin: -10px 0 10px;
 }
 
+main {
+  flex: 1;
+}
+
 .footer {
   background-color: #1c1c1c;
   color: #aaa;
@@ -137,7 +145,4 @@ button[type="submit"]:hover, .discord-login:hover {
   padding: 20px 0;
   font-size: 0.9rem;
   border-top: 1px solid #333;
-  margin-top: 50px;
-  position: relative;
-  z-index: 1;
 }
