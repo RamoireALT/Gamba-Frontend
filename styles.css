@@ -10,6 +10,12 @@
 
 body, html {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+  color: white;
+  margin: 0;
+  padding: 0;
 }
 
 /* Header */
@@ -147,19 +153,21 @@ header {
 
 /* Main content styling */
 main {
+  flex: 1 0 auto;  /* grow, shrink, base size */
   padding: 40px 20px;
   text-align: center;
 }
 
 /* Footer */
 footer {
+  flex-shrink: 0; /* prevent footer from shrinking */
   background-color: #1f1f1f;
   text-align: center;
   padding: 15px 10px;
   font-size: 14px;
   color: #bbb;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   user-select: none;
+  /* Remove fixed positioning */
+  position: static;
+  width: 100%;
 }
