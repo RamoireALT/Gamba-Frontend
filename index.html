@@ -13,6 +13,7 @@
   </header>
 
   <main class="content">
+    <!-- Content of the website goes here -->
     <p style="text-align:center; margin-top: 100px; font-size: 1.2rem;">Welcome to the WƎNDER Gambling Platform</p>
   </main>
 
@@ -21,56 +22,55 @@
   </footer>
 
   <!-- Login/Register/Reset popup -->
-<!-- Login/Register/Reset popup -->
-<div id="auth-popup" class="popup hidden">
-  <div class="popup-overlay"></div>
-  <div class="popup-box">
-    <div class="tab-header">
-      <span id="tab-label">Login</span>
-      <button id="close-popup" class="close-btn">&times;</button>
+  <div id="auth-popup" class="popup hidden">
+    <div class="popup-overlay"></div>
+    <div class="popup-box">
+      <div class="tab-header">
+        <span id="tab-label">Login</span>
+        <button id="close-popup" class="close-btn">&times;</button>
+      </div>
+
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="login">Login</button>
+        <button class="tab-btn" data-tab="register">Register</button>
+        <button class="tab-btn" data-tab="reset">Forgot Password</button>
+      </div>
+
+      <div id="login" class="tab-content active">
+        <form id="login-form">
+          <input type="text" placeholder="Username or Email" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+
+      <div id="register" class="tab-content">
+        <form id="register-form">
+          <input type="text" placeholder="Username" required />
+          <input type="email" placeholder="Email" required />
+          <input type="password" placeholder="Password" required />
+          <input type="password" placeholder="Confirm Password" required />
+          <button type="submit">Register</button>
+        </form>
+      </div>
+
+      <div id="reset" class="tab-content">
+        <form id="reset-form">
+          <input type="password" placeholder="Current Password" required />
+          <input type="password" placeholder="New Password" required />
+          <input type="password" placeholder="Confirm New Password" required />
+          <button type="submit">Reset Password</button>
+        </form>
+      </div>
+
+      <div class="discord-separator"><span>OR</span></div>
+
+      <button id="discord-login-btn">
+        <img src="discord.png" alt="Discord" class="discord-icon" />
+        Login with Discord
+      </button>
     </div>
-
-    <div id="login" class="tab-content active">
-      <form id="login-form">
-        <input type="text" placeholder="Username or Email" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-
-    <div id="register" class="tab-content">
-      <form id="register-form">
-        <input type="text" placeholder="Username" required />
-        <input type="email" placeholder="Email" required />
-        <input type="password" placeholder="Password" required />
-        <input type="password" placeholder="Confirm Password" required />
-        <button type="submit">Register</button>
-      </form>
-    </div>
-
-    <div id="reset" class="tab-content">
-      <form id="reset-form">
-        <input type="password" placeholder="Current Password" required />
-        <input type="password" placeholder="New Password" required />
-        <input type="password" placeholder="Confirm New Password" required />
-        <button type="submit">Reset Password</button>
-      </form>
-    </div>
-
-    <div class="tab-buttons">
-      <button class="tab-btn active" data-tab="login">Login</button>
-      <button class="tab-btn" data-tab="register">Register</button>
-      <button class="tab-btn" data-tab="reset">Forgot Password</button>
-    </div>
-
-    <div class="discord-separator"><span>OR</span></div>
-
-    <button id="discord-login-btn">
-      <img src="discord.png" alt="Discord" class="discord-icon" />
-      Login with Discord
-    </button>
   </div>
-</div>
 
   <script src="script.js"></script>
 </body>
