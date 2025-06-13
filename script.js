@@ -16,3 +16,26 @@ window.addEventListener("DOMContentLoaded", async () => {
     console.error("Not logged in.");
   }
 });
+
+async function getCurrentUser() {
+  try {
+    const res = await fetch('https://gamba-backend.onrender.com/api/me', {
+      credentials: 'include' // Important to send session cookie!
+    });
+    if (res.ok) {
+      const user = await res.json();
+      // Update UI with user info
+      console.log('Logged in user:', user);
+      // Show profile pic, name, etc.
+    } else {
+      // Not logged in
+      console.log('User not logged in');
+    }
+  } catch (error) {
+    console.error('Error fetching user:', error);
+  }
+}
+
+window.onload = () => {
+  getCurrentUser();
+};
