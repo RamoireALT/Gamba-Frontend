@@ -1,4 +1,14 @@
 const profileContainer = document.getElementById('profile-container');
+const openBtn = document.getElementById('open-login');
+const modal = document.getElementById('login-modal');
+const closeBtn = document.getElementById('close-modal');
+const discordBtn = document.getElementById('discord-login');
+
+openBtn.onclick = () => modal.style.display = 'flex';
+closeBtn.onclick = () => modal.style.display = 'none';
+window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; }
+discordBtn.onclick = () => window.location.reload() || window.location.href = 'https://gamba-backend.onrender.com/auth/discord';
+
 
 function createLoginButton() {
   const btn = document.createElement('button');
