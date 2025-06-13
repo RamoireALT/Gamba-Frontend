@@ -13,6 +13,6 @@ window.addEventListener("DOMContentLoaded", async () => {
       `;
     }
   } catch (err) {
-    console.error("User not logged in");
+    console.error("Not logged in.");
   }
 });
