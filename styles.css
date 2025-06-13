@@ -1,107 +1,61 @@
-/* Reset & base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background: #0e0e0e;
-  color: #f0f0f0;
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: white;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Header */
-.header {
+header {
+  background-color: #1f1f1f;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1c1c1c;
-  padding: 20px 40px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 1.5rem;
+  color: #00aaff;
+  text-shadow: 0 0 10px #00aaff;
   font-weight: bold;
-  color: #ffffff;
 }
 
-.glow {
-  color: #4dabf7;
-  text-shadow: 0 0 8px #4dabf7, 0 0 16px #4dabf7;
-}
-
-/* User/login section */
-.user-section {
-  display: flex;
-  align-items: center;
-}
-
-.login-button {
+#login-btn {
   background-color: #5865F2;
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 6px;
-  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   display: flex;
   align-items: center;
-  font-weight: 500;
-  cursor: pointer;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
   transition: background 0.2s;
 }
 
-.login-button img {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-}
-
-.login-button:hover {
+#login-btn:hover {
   background-color: #4752c4;
 }
 
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.discord-icon {
+  width: 20px;
+  height: 20px;
 }
 
-.profile img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-
-/* Main content */
-.main-content {
+main {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
+  padding: 2rem;
   text-align: center;
 }
 
-.main-content h1 {
-  font-size: 36px;
-  margin-bottom: 16px;
-}
-
-.main-content p {
-  font-size: 18px;
+footer {
+  background-color: #1f1f1f;
   color: #ccc;
-}
-
-/* Footer */
-.footer {
-  background: #1c1c1c;
-  padding: 20px;
   text-align: center;
-  font-size: 14px;
-  color: #aaa;
+  padding: 1rem;
+  font-size: 0.9rem;
 }
