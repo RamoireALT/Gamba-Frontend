@@ -7,24 +7,29 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <div class="logo">WƎNDER</div>
-    <div class="login-container">
-      <button id="loginBtn" class="login-button">
-        <img src="discord.png" alt="Discord" class="discord-icon" />
-        <span>Login with Discord</span>
-      </button>
+  <!-- Header -->
+  <header class="header">
+    <h1 class="logo-text">WƎNDER</h1>
+    <button id="login-btn" class="login-btn">
+      <img src="discord.png" alt="Discord Logo" class="discord-icon" />
+      Login with Discord
+    </button>
+    <div id="user-profile" class="user-profile hidden">
+      <img id="user-avatar" src="" alt="Avatar" class="avatar" />
+      <span id="user-name" class="username"></span>
     </div>
   </header>
 
-  <main>
-    <h1>Welcome to WƎNDER Gambling</h1>
-    <p>Enjoy games like Mines, Coinflip, Dice, and more!</p>
+  <!-- Main Content -->
+  <main class="main-content">
+    <h2>Welcome to WƎNDER Gambling</h2>
+    <p>Play games. Earn rewards. Enjoy the luck!</p>
   </main>
 
-  <footer>
-    <p>© 2025 WƎNDER. All rights reserved.</p>
-    <p>Contact: support@w3nder.com</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Contact: support@wendergambling.com</p>
+    <p>&copy; 2025 WƎNDER Gambling. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
