@@ -25,29 +25,15 @@ header {
 }
 
 .logo {
-  font-size: 2.2rem;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(270deg, #9b59b6, #f1c40f, #9b59b6);
-  background-size: 600% 600%;
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: glowShift 6s ease infinite;
-  text-shadow: 0 0 10px rgba(241, 196, 15, 0.4);
-}
-
-@keyframes glowShift {
-  0% {
-    background-position: 0% 50%;
-    text-shadow: 0 0 10px rgba(155, 89, 182, 0.4);
-  }
-  50% {
-    background-position: 100% 50%;
-    text-shadow: 0 0 12px rgba(241, 196, 15, 0.5);
-  }
-  100% {
-    background-position: 0% 50%;
-    text-shadow: 0 0 10px rgba(155, 89, 182, 0.4);
-  }
+  text-align: left;
 }
 
 /* Login Button */
@@ -97,4 +83,16 @@ footer {
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
+}
+
+@keyframes glowShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
