@@ -39,3 +39,20 @@ async function getCurrentUser() {
 window.onload = () => {
   getCurrentUser();
 };
+
+fetch('https://gamba-backend.onrender.com/api/user', {
+  credentials: 'include' // send session cookies
+})
+.then(res => res.json())
+.then(user => {
+  if (user && user.username) {
+    const profileBtn = document.getElementById('login-btn');
+    profileBtn.innerHTML = `
+      <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" alt="Avatar" style="width:24px; height:24px; border-radius:50%; vertical-align:middle; margin-right:5px;">
+      ${user.username}
+    `;
+  }
+})
+.catch(err => {
+  console.log('Not logged in yet.');
+});
