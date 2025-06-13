@@ -54,86 +54,78 @@ body {
   height: 20px;
 }
 
-.footer {
-  background: #1c1c1c;
-  color: #aaa;
-  text-align: center;
-  padding: 20px 10px;
-  font-size: 0.9rem;
-  border-top: 1px solid #333;
-  margin-top: 50px;
-}
-
-/* Login Popup */
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0,0,0,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
 }
 
 .popup-content {
-  background: #1e1e1e;
-  border-radius: 16px;
+  background: #1a1a1a;
+  border-radius: 20px;
   padding: 30px;
-  width: 320px;
-  animation: glow 3s ease-in-out infinite alternate;
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+  width: 350px;
+  box-shadow: 0 0 25px #a855f7;
+  animation: popup-fade 0.3s ease;
 }
 
-.popup-tabs {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.popup-tabs button {
-  background: transparent;
-  border: none;
-  color: #eee;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.popup-tabs button:hover {
-  color: #facc15;
+@keyframes popup-fade {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
-.form input,
-.form button {
+input {
   padding: 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: #fff;
 }
 
-.form input {
-  background: #2c2c2c;
-  color: white;
-}
-
-.form button {
+button[type="submit"], .discord-login {
+  padding: 10px;
   background: #5865f2;
   color: white;
-  font-weight: bold;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.form button:hover {
+button[type="submit"]:hover, .discord-login:hover {
   background: #4752c4;
 }
 
-.hidden {
-  display: none;
+.form-footer {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.form-footer a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.divider {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin: -10px 0 10px;
 }
