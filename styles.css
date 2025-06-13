@@ -1,4 +1,4 @@
-/* Reset & base */
+/* Reset and base */
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@ header {
   flex-shrink: 0;
 }
 
-/* Animated glowing logo */
+/* Glowing logo */
 .logo {
   font-weight: 900;
   font-size: 28px;
