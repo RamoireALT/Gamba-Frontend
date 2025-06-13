@@ -1,32 +1,22 @@
-const userSection = document.getElementById("user-section");
+window.addEventListener("DOMContentLoaded", () => {
+  const userSection = document.getElementById("userSection");
 
-function createProfileElement(user) {
-  userSection.innerHTML = `
-    <div id="profile">
-      <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" alt="Avatar" />
-      <span>${user.username}#${user.discriminator}</span>
-      <button id="logout-btn">Logout</button>
-    </div>
-  `;
+  const user = JSON.parse(localStorage.getItem("user")); // simulate login
 
-  document.getElementById("logout-btn").onclick = () => {
-    fetch("https://gamba-backend.onrender.com/auth/logout", {
-      credentials: "include"
-    }).then(() => window.location.reload());
-  };
-}
-
-document.getElementById("login-btn")?.addEventListener("click", () => {
-  window.location.href = "https://gamba-backend.onrender.com/auth/discord";
+  if (user && user.username && user.avatar) {
+    const avatarURL = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+    userSection.innerHTML = `
+      <div class="profile">
+        <img src="${avatarURL}" alt="Profile">
+        <span>${user.username}</span>
+      </div>
+    `;
+  } else {
+    userSection.innerHTML = `
+      <button class="login-button" onclick="window.location.href='https://gamba-backend.onrender.com/auth/discord'">
+        <img src="discord.svg" alt="Discord Logo" />
+        Login with Discord
+      </button>
+    `;
+  }
 });
-
-fetch("https://gamba-backend.onrender.com/api/user", {
-  credentials: "include"
-})
-  .then(res => res.json())
-  .then(user => {
-    if (user && user.username) {
-      createProfileElement(user);
-    }
-  })
-  .catch(console.error);
