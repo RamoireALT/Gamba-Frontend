@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginBtn = document.getElementById('open-auth-popup');
+    const loginBtn = document.getElementById('login-btn');
     const popup = document.getElementById('auth-popup');
     const closeBtn = document.getElementById('close-popup');
     const overlay = document.querySelector('.popup-overlay');
