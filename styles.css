@@ -1,3 +1,4 @@
+/* Full height layout */
 html, body {
   height: 100%;
   margin: 0;
@@ -5,6 +6,18 @@ html, body {
   background: #0f0f0f;
   color: #eee;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content grows to fill space */
+main {
+  flex: 1;
+  padding: 20px;
 }
 
 .header {
@@ -132,10 +145,6 @@ button[type="submit"]:hover, .discord-login:hover {
   margin: -10px 0 10px;
 }
 
-main {
-  flex: 1;
-}
-
 .footer {
   background-color: #1c1c1c;
   color: #aaa;
@@ -143,9 +152,4 @@ main {
   padding: 20px 0;
   font-size: 0.9rem;
   border-top: 1px solid #333;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
 }
