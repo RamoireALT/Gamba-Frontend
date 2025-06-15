@@ -273,3 +273,31 @@ form button[type="submit"] {
 .hidden {
   display: none;
 }
+
+.section {
+  padding: 40px 20px;
+  border-top: 1px solid #333;
+}
+
+.product {
+  background: #1c1c1c;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.buy-btn, .play-btn {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #5865f2;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.buy-btn:hover, .play-btn:hover {
+  background-color: #4752c4;
+}
