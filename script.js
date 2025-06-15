@@ -167,5 +167,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const homeSection = document.getElementById('home-section');
+  const storeSection = document.getElementById('store-section');
+  const gamblingSection = document.getElementById('gambling-section');
+
+  document.getElementById('store-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    homeSection.classList.add('hidden');
+    gamblingSection.classList.add('hidden');
+    storeSection.classList.remove('hidden');
+  });
+
+  document.getElementById('gambling-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    homeSection.classList.add('hidden');
+    storeSection.classList.add('hidden');
+    gamblingSection.classList.remove('hidden');
+  });
+
   checkSession();
 });
