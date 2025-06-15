@@ -269,3 +269,7 @@ form button[type="submit"] {
 .nav-links a:hover {
   color: #facc15;
 }
+
+.hidden {
+  display: none;
+}
