@@ -1,189 +1,177 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const popup = document.getElementById('auth-popup');
-  const closeBtn = document.getElementById('close-popup');
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
-  const tabLabel = document.getElementById('tab-label');
-  const loginForm = document.getElementById('login-form');
-  const registerForm = document.getElementById('register-form');
-  const resetForm = document.getElementById('reset-form');
-  const discordLoginBtn = document.getElementById('discord-login-btn');
-  const openAuthPopup = document.getElementById('open-auth-popup');
+const API_URL = 'https://Gamba-Backend.onrender.com/api';
 
-  const API_BASE = 'https://gamba-backend.onrender.com/api';
+// Elements
+const loginBtn = document.getElementById('loginBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const registerBtn = document.getElementById('registerBtn');
+const profileSection = document.getElementById('profileSection');
+const profileNameEl = document.getElementById('profileName');
+const profileBalanceEl = document.getElementById('profileBalance');
+const profileLevelEl = document.getElementById('profileLevel');
+const profileXpEl = document.getElementById('profileXP');
+const profileCashbackEl = document.getElementById('profileCashback');
+const redeemCashbackBtn = document.getElementById('redeemCashbackBtn');
 
-  function setActiveTab(tabName) {
-    tabButtons.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.tab === tabName);
-    });
-    tabContents.forEach(content => {
-      content.classList.toggle('active', content.id === tabName);
-    });
-    tabLabel.textContent = tabName.charAt(0).toUpperCase() + tabName.slice(1);
+let currentUser = null;
+
+// Helpers
+function formatEuros(value) {
+  return value.toFixed(2) + ' €';
+}
+
+async function checkSession() {
+  const res = await fetch(`${API_URL}/session`, { credentials: 'include' });
+  const data = await res.json();
+  if (data.loggedIn) {
+    currentUser = data.user;
+    showProfile();
+    loadProfile();
+    setInterval(loadProfile, 5000);
+  } else {
+    currentUser = null;
+    showLogin();
   }
+}
 
-  openAuthPopup.addEventListener('click', () => {
-    popup.classList.remove('hidden');
-    setActiveTab('login');
-  });
+function showLogin() {
+  profileSection.style.display = 'none';
+  loginBtn.style.display = 'inline-block';
+  registerBtn.style.display = 'inline-block';
+  logoutBtn.style.display = 'none';
+}
 
-  closeBtn.addEventListener('click', () => {
-    popup.classList.add('hidden');
-  });
+function showProfile() {
+  profileSection.style.display = 'block';
+  loginBtn.style.display = 'none';
+  registerBtn.style.display = 'none';
+  logoutBtn.style.display = 'inline-block';
+}
 
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      setActiveTab(button.dataset.tab);
-    });
-  });
-
-  // Login
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = {
-      usernameOrEmail: loginForm.elements[0].value,
-      password: loginForm.elements[1].value
-    };
-
-    const res = await fetch(`${API_BASE}/login`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-    if (res.ok) {
-      popup.classList.add('hidden');
-      updateUI(result.user);
-    } else {
-      alert(result.message || 'Login failed');
-    }
-  });
-
-  // Register
-  registerForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = {
-      username: registerForm.elements[0].value,
-      email: registerForm.elements[1].value,
-      password: registerForm.elements[2].value,
-      confirmPassword: registerForm.elements[3].value
-    };
-
-    if (data.password !== data.confirmPassword) {
-      alert("Passwords don't match");
-      return;
-    }
-
-    const res = await fetch(`${API_BASE}/register`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-    if (res.ok) {
-      popup.classList.add('hidden');
-      updateUI(result.user);
-    } else {
-      alert(result.message || 'Registration failed');
-    }
-  });
-
-  // Reset Password
-  resetForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = {
-      currentPassword: resetForm.elements[0].value,
-      newPassword: resetForm.elements[1].value,
-      confirmPassword: resetForm.elements[2].value
-    };
-
-    if (data.newPassword !== data.confirmPassword) {
-      alert("New passwords don't match");
-      return;
-    }
-
-    const res = await fetch(`${API_BASE}/reset-password`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-    if (res.ok) {
-      alert("Password reset successfully");
-      popup.classList.add('hidden');
-    } else {
-      alert(result.message || 'Reset failed');
-    }
-  });
-
-  // Discord Login
-  discordLoginBtn.addEventListener('click', () => {
-    window.location.href = `${API_BASE}/auth/discord`;
-  });
-
-  // Logout
-  document.body.addEventListener('click', async (e) => {
-    if (e.target.id === 'logout-btn') {
-      await fetch(`${API_BASE}/logout`, {
-        method: 'POST',
-        credentials: 'include'
-      });
-      updateUI(null);
-    }
-  });
-
-  // Session check
-  async function checkSession() {
-    const res = await fetch(`${API_BASE}/session`, {
-      credentials: 'include'
-    });
-    if (res.ok) {
-      const result = await res.json();
-      updateUI(result.user);
-    }
+async function loadProfile() {
+  if (!currentUser) return;
+  const res = await fetch(`${API_URL}/profile`, { credentials: 'include' });
+  if (!res.ok) {
+    console.error('Failed to load profile');
+    return;
   }
+  const user = await res.json();
 
-  function updateUI(user) {
-    const loginBtn = document.getElementById('open-auth-popup');
-    const header = document.querySelector('.header');
+  profileNameEl.textContent = user.username;
+  profileBalanceEl.textContent = formatEuros(user.balance);
+  profileLevelEl.textContent = user.level;
+  profileXpEl.textContent = user.xp;
+  profileCashbackEl.textContent = formatEuros(user.cashbackAmount);
 
-    if (user) {
-      loginBtn.remove();
-      const profile = document.createElement('div');
-      profile.className = 'profile';
-      profile.innerHTML = `
-        <span>Logged in as <strong>${user.username}</strong></span>
-        <button id="logout-btn" class="login-btn">Logout</button>
-      `;
-      header.appendChild(profile);
-    } else {
-      // fallback if needed
-    }
+  // Show redeem button if cashback >= 5€
+  if (user.cashbackAmount >= 5) {
+    redeemCashbackBtn.style.display = 'inline-block';
+  } else {
+    redeemCashbackBtn.style.display = 'none';
   }
+}
 
-  const homeSection = document.getElementById('home-section');
-  const storeSection = document.getElementById('store-section');
-  const gamblingSection = document.getElementById('gambling-section');
-
-  document.getElementById('store-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    homeSection.classList.add('hidden');
-    gamblingSection.classList.add('hidden');
-    storeSection.classList.remove('hidden');
+// Login function
+async function login(username, password) {
+  const res = await fetch(`${API_URL}/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ username, password }),
   });
+  if (res.ok) {
+    currentUser = username;
+    showProfile();
+    loadProfile();
+    setInterval(loadProfile, 5000);
+  } else {
+    alert('Login failed');
+  }
+}
 
-  document.getElementById('gambling-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    homeSection.classList.add('hidden');
-    storeSection.classList.add('hidden');
-    gamblingSection.classList.remove('hidden');
+// Register function
+async function register(username, password) {
+  const res = await fetch(`${API_URL}/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ username, password }),
   });
+  if (res.ok) {
+    currentUser = username;
+    showProfile();
+    loadProfile();
+    setInterval(loadProfile, 5000);
+  } else {
+    alert('Registration failed');
+  }
+}
 
-  checkSession();
-});
+// Logout function
+async function logout() {
+  await fetch(`${API_URL}/logout`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+  currentUser = null;
+  showLogin();
+}
+
+// Redeem cashback
+async function redeemCashback() {
+  const res = await fetch(`${API_URL}/redeem-cashback`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+  if (res.ok) {
+    alert('Cashback redeemed!');
+    loadProfile();
+  } else {
+    const data = await res.json();
+    alert('Redeem failed: ' + (data.error || 'Unknown error'));
+  }
+}
+
+// Call this whenever a bet is placed with the bet amount in euros
+async function placeBet(amount) {
+  if (!currentUser) {
+    alert('You must be logged in to place bets');
+    return;
+  }
+  const res = await fetch(`${API_URL}/bet`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ amount }),
+  });
+  if (res.ok) {
+    const data = await res.json();
+    console.log(`Bet registered. XP: ${data.xp}, Level: ${data.level}`);
+    loadProfile();
+  } else {
+    alert('Bet failed');
+  }
+}
+
+// Example bindings (replace these with your actual UI logic)
+loginBtn.onclick = () => {
+  const username = prompt('Username:');
+  const password = prompt('Password:');
+  login(username, password);
+};
+
+registerBtn.onclick = () => {
+  const username = prompt('Choose username:');
+  const password = prompt('Choose password:');
+  register(username, password);
+};
+
+logoutBtn.onclick = () => {
+  logout();
+};
+
+redeemCashbackBtn.onclick = () => {
+  redeemCashback();
+};
+
+// Start app
+checkSession();
