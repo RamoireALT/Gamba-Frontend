@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WƎNDER Gambling</title>
+  <title>WƎNDER</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="header">
-    <h1 class="logo-text">WƎNDER</h1>
-
+    <h1 class="logo-text" id="logo-click" style="cursor: pointer;">WƎNDER</h1>
     <nav class="nav-links">
-      <a href="#store-section" id="store-link">Store</a>
-      <a href="#gambling-section" id="gambling-link">Gambling</a>
+      <a href="#" id="store-link">Store</a>
+      <a href="#" id="gambling-link">Gambling</a>
     </nav>
-
     <button id="open-auth-popup" class="login-btn">Login</button>
   </header>
 
   <main class="content">
-    <p style="text-align:center; margin-top: 100px; font-size: 1.2rem;">
-      Welcome to the WƎNDER Gambling Platform
-    </p>
+    <!-- Home Section (default) -->
+    <section id="home-section" class="section">
+      <p style="text-align:center; margin-top: 100px; font-size: 1.4rem;">
+        👋 Welcome to <strong>WƎNDER Web</strong><br />Your gateway to unique services and games.
+      </p>
+    </section>
 
     <!-- Store Section -->
-    <section id="store-section" class="section">
+    <section id="store-section" class="section hidden">
       <h2>Store</h2>
       <div class="product">
         <h3>Custom Discord Bot</h3>
@@ -35,7 +36,7 @@
     </section>
 
     <!-- Gambling Section -->
-    <section id="gambling-section" class="section">
+    <section id="gambling-section" class="section hidden">
       <h2>Mines Game</h2>
       <p>
         Choose between 1 and 24 mines on a 5x5 grid.<br />
@@ -101,6 +102,35 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Section switching logic
+    const sections = {
+      home: document.getElementById("home-section"),
+      store: document.getElementById("store-section"),
+      gambling: document.getElementById("gambling-section"),
+    };
+
+    const showSection = (key) => {
+      Object.values(sections).forEach((sec) => sec.classList.add("hidden"));
+      sections[key].classList.remove("hidden");
+    };
+
+    document.getElementById("store-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      showSection("store");
+    });
+
+    document.getElementById("gambling-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      showSection("gambling");
+    });
+
+    document.getElementById("logo-click").addEventListener("click", () => {
+      showSection("home");
+    });
+
+    // Default to home section
+    showSection("home");
+  </script>
 </body>
 </html>
